@@ -1,9 +1,15 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup #beautifulsoup4
 import re
 import sqlite3
+<<<<<<< HEAD
 import billboard
 #import urllib.request
+=======
+import billboard #billboard.py
+#import urllib.request
+import csv
+>>>>>>> upstream/master
 
 # res = requests.get('https://www.azlyrics.com/lyrics/samsmith/dancingwithastranger.html')
 #singer와 title을 적으면 가사를 찾아주는 함수
@@ -73,6 +79,12 @@ def get_billboard_data():
         artist_title = artist + ' - ' + title + '\n'
         f.write(artist_title)
     f.close()
+<<<<<<< HEAD
+=======
+
+def createExcel():
+    pass
+>>>>>>> upstream/master
 
 if __name__ == "__main__":
     db = "music.db"
@@ -90,6 +102,8 @@ if __name__ == "__main__":
     f.close()
 
     print(billboard_list)
+    f = open('music.csv', 'w', newline='')
+    wr = csv.writer(f)
     for song_list in billboard_list :
         singer = song_list[0]
         title = song_list[1]
@@ -97,8 +111,7 @@ if __name__ == "__main__":
         if lyric_text != " ":
             print(lyric_text)
             data = (singer, title, lyric_text)
-            saveDBtable(db, data)
+            # saveDBtable(db, data)
+            wr.writerow([singer, title, lyric_text])
         else:
             print("no lyric data")
-
-
